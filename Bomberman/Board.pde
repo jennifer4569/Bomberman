@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 public class Board{
   Tile[][] board;
+  Player player;
   int startX;
   int startY;
   float increment;
@@ -15,9 +16,11 @@ public class Board{
     int numRows = 0;
     int numCols = 0;
     ArrayList<String> values = new ArrayList<String>();
-    try{
-      Scanner scan = new Scanner(new File(fileName)); //ERROR IS HERE
-      String currentLine;
+    //try{
+      //System.out.println(new File(fileName).getAbsolutePath());
+      //Scanner scan = new Scanner(new File(fileName));
+      //Scanner scan = new Scanner(new File(fileName)); //ERROR IS HERE
+      /*String currentLine;
       while(scan.hasNext()){
         currentLine = scan.nextLine();
         for(int i = 0; i < currentLine.length(); i++){
@@ -30,6 +33,14 @@ public class Board{
     catch(FileNotFoundException e){
       System.out.println("File not found!");
       System.exit(0);
+    }*/
+    String[] lines = loadStrings(fileName);
+    numRows = lines.length;
+    numCols = lines[0].length();
+    for(int r = 0; r < lines.length; r++){
+     for(int c = 0; c < lines[r].length(); c++){
+      values.add(lines[r].substring(c, c+1));
+     }
     }
     board = new Tile[numRows][numCols];
     
@@ -42,20 +53,27 @@ public class Board{
     
     float x = startX;
     float y = startY;
+    int numPlayers = 0;
     for(int r = 0; r < numRows; r++){
       for(int c = 0; c < numCols; c++){
         String current = values.remove(0);
+        board[r][c] = new Tile(x, y, increment);
         if(current.equals("#")){
-          board[r][c] = new Tile(x, y, increment, true, false);
+          board[r][c].place(new Obstacle(false,board[r][c]));
         }
         else if(current.equals("-")){
-          board[r][c] = new Tile(x, y, increment, true, true);
-        }
-        else if(current.equals(" ")){
-          board[r][c] = new Tile(x, y, increment,false, false);
-        }
-        else{
-          System.out.println("Board should only have '#', '-', or ' '!");
+          board[r][c].place(new Obstacle(true,board[r][c]));
+        } else if(current.equals("P")){
+          if (numPlayers==0){
+            player=new Player(board[r][c]);
+            board[r][c].place(player);
+            numPlayers++;
+          } else{
+            System.out.println("Board should have exactly one player!");
+            System.exit(0); 
+          }
+        } else if (!current.equals(" ")){
+          System.out.println("Board should only have '#', '-', 'P', or ' '!");
          System.exit(0); 
         }
         x += increment;
@@ -63,8 +81,13 @@ public class Board{
       x = startX;
       y += increment;
     }
+    if (player==null){
+      System.out.println("Board should have exactly one player!");
+      System.exit(0);
+    }
     
   }
+
   
   public Board(int row, int col, int startX, int startY){
     this.startX = startX;
