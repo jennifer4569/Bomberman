@@ -1,5 +1,5 @@
-import java.util.Scanner;
-import java.io.FileNotFoundException;
+//import java.util.Scanner;
+//import java.io.FileNotFoundException;
 public class Board{
   Tile[][] board;
   Player player;
@@ -34,6 +34,10 @@ public class Board{
       System.out.println("File not found!");
       System.exit(0);
     }*/
+    if(loadStrings(fileName) == null){
+     System.out.println("File not found!");
+     System.exit(0);
+    }
     String[] lines = loadStrings(fileName);
     numRows = lines.length;
     numCols = lines[0].length();
@@ -130,7 +134,7 @@ public class Board{
     }
     
     
-    image(loadImage("Player.png"), startX * 33 / 26, startY, 14 * this.increment / 26, this.increment);
+    
     
     
     

@@ -28,10 +28,12 @@ public class Tile{
     public void display(){
       if(obs != null){
         if(obs.isBreakable){
-          //fill(255, 0, 0);
-              //rect(x, y, sideL, sideL);
+          if(obs.type == 0){
               image(loadImage("BreakableObstacle.png"), x, y, sideL, sideL);
-
+          }
+          else{
+              image(loadImage("Player.png"), x, y, sideL, sideL);
+          }
         }
         else{
          //fill(0, 0, 0); 
