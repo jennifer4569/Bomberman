@@ -22,5 +22,7 @@ public class Obstacle{
       isBreakable = false; 
      }
    }
-   
+   public Tile where(){
+     return location;
+   }
 }

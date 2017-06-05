@@ -1,6 +1,12 @@
 //import java.util.Scanner;
 //import java.io.FileNotFoundException;
 public class Board{
+  int[][] moves = {{-1, 0}, {1,0}, {0, 1},  {0,-1}};
+    //0: UP
+    //1: DOWN
+    //2: RIGHT
+    //3: LEFT
+  
   Tile[][] board;
   Player player;
   int startX;
@@ -16,24 +22,6 @@ public class Board{
     int numRows = 0;
     int numCols = 0;
     ArrayList<String> values = new ArrayList<String>();
-    //try{
-      //System.out.println(new File(fileName).getAbsolutePath());
-      //Scanner scan = new Scanner(new File(fileName));
-      //Scanner scan = new Scanner(new File(fileName)); //ERROR IS HERE
-      /*String currentLine;
-      while(scan.hasNext()){
-        currentLine = scan.nextLine();
-        for(int i = 0; i < currentLine.length(); i++){
-          values.add(currentLine.substring(i, i + 1));
-          numRows++;
-        }
-        numCols++;
-      }
-    }
-    catch(FileNotFoundException e){
-      System.out.println("File not found!");
-      System.exit(0);
-    }*/
     if(loadStrings(fileName) == null){
      System.out.println("File not found!");
      System.exit(0);
@@ -61,7 +49,7 @@ public class Board{
     for(int r = 0; r < numRows; r++){
       for(int c = 0; c < numCols; c++){
         String current = values.remove(0);
-        board[r][c] = new Tile(x, y, increment);
+        board[r][c] = new Tile(r, c, x, y, increment);
         if(current.equals("#")){
           board[r][c].place(new Obstacle(false,board[r][c]));
         }
@@ -110,7 +98,7 @@ public class Board{
     
     for(int r = 0; r < board.length; r++){
       for(int c = 0; c < board[0].length; c++){
-          board[r][c] = new Tile(x, y, increment); 
+          board[r][c] = new Tile(r, c, x, y, increment); 
           x += increment;
        }
        x = startX;
@@ -132,12 +120,21 @@ public class Board{
         board[r][c].display();
       }
     }
+  } 
+  void movePlayer(int move){
     
+    int newRow = player.where().row + moves[move][0];
+    int newCol = player.where().col + moves[move][1];
     
+    if(!board[newRow][newCol].hasObstacle()){
+      board[newRow][newCol].obs = player;
+      board[player.where().row][player.where().col].obs = null;
+      player.location = board[newRow][newCol];
+    }
     
-    
+  }
     
     
   
-}
+
 }

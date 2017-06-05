@@ -1,10 +1,14 @@
 public class Tile{
+  int row;
+  int col;
    float x;
    float y;
    float sideL;
    Obstacle obs;
      
-     public Tile(float x, float y, float sideL){ //randomly generates obs
+     public Tile(int row, int col, float x, float y, float sideL){ //randomly generates obs
+       this.row = row;
+       this.col = col;
        this.x = x;
        this.y = y;
        this.sideL = sideL;
@@ -47,5 +51,9 @@ public class Tile{
       }
       
       //rect(x, y, sideL, sideL);
+    }
+    
+    boolean hasObstacle(){
+     return obs != null; 
     }
   }
