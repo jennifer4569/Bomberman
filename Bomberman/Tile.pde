@@ -1,10 +1,18 @@
 public class Tile {
+  int[][] moves = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+  //0: UP
+  //1: DOWN
+  //2: RIGHT
+  //3: LEFT
+  
   int row;
   int col;
   float x;
   float y;
   float sideL;
   Obstacle obs;
+  
+  boolean isRed;
 
   public Tile(int row, int col, float x, float y, float sideL) { //randomly generates obs
     this.row = row;
@@ -40,16 +48,26 @@ public class Tile {
           image(loadImage("Bomb.png"), x, y, sideL, sideL);
         }
       } else {
-        //fill(0, 0, 0); 
         image(loadImage("UnbreakableObstacle.png"), x, y, sideL, sideL);
       }
     } else {
-      fill(225, 225, 225); 
+      if(!isRed){
+        fill(225, 225, 225); 
+      }
+      else{
+         fill(255,0,0); 
+      }
       rect(x, y, sideL, sideL);
     }
 
     //rect(x, y, sideL, sideL);
   }
+void explodedOn(){
+  isRed = true;
+  if(obs != null && obs.isBreakable){
+     obs = null; 
+  }
+}
 
   boolean hasObstacle() {
     return obs != null;

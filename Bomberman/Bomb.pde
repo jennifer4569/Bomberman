@@ -6,14 +6,18 @@ public class Bomb extends Obstacle {
 
   boolean go() { //returns true if it exploded
     timer++;
-    if (timer >= 10000) {
-      explode();
+    if (timer >= 100) {
+      //explode();
       return true;
     }
     return false;
-  }
+  }/*
   void explode(){
     getLocation().obs = null;
+    for(Tile t : ){
+     t.turnRed(); 
+    }
+    getLocation().display();
   }
-
+*/
 }

@@ -135,8 +135,18 @@ public class Board {
   }
 
   void go() {
+    Bomb current;
     for (int i = 0; i < bombs.size(); i++) {
-      if(bombs.get(i).go()){ 
+      current = bombs.get(i);
+      if (current.go()) { 
+
+        current.getLocation().obs = null;
+
+        for (int move = 0; move < moves.length; move++) {
+          board[current.getLocation().row + moves[move][0]][current.getLocation().col + moves[move][1]].explodedOn();
+        }
+
+        bombs.get(i).getLocation().display();
         bombs.remove(i);
         i--;
       }
