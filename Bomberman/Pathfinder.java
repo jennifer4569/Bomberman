@@ -1,4 +1,4 @@
-import java.util.NoSuchElementException;
+/*import java.util.NoSuchElementException;
 
 public class Pathfinder {
 	private Board board;
@@ -204,4 +204,4 @@ public class Pathfinder {
 	private Tile runAway(Enemy e){
 		return e.where();
 	}
-}
+}*/
