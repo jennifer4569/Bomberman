@@ -119,19 +119,19 @@ public class Board {
   } 
   void movePlayer(int move) {
 
-    int newRow = player.getLocation().row + moves[move][0];
-    int newCol = player.getLocation().col + moves[move][1];
+    int newRow = player.where().row + moves[move][0];
+    int newCol = player.where().col + moves[move][1];
 
     if (!board[newRow][newCol].hasObstacle()) {
       board[newRow][newCol].obs = player;
-      board[player.getLocation().row][player.getLocation().col].obs = null;
+      board[player.where().row][player.where().col].obs = null;
       player.location = board[newRow][newCol];
     }
   }
   void dropBomb() {
-    Bomb toAdd = new Bomb(player.getLocation());
+    Bomb toAdd = new Bomb(player.where());
     bombs.add(toAdd);
-    board[player.getLocation().row][player.getLocation().col].obs = toAdd;
+    board[player.where().row][player.where().col].obs = toAdd;
   }
 
   void go() {
@@ -140,16 +140,30 @@ public class Board {
       current = bombs.get(i);
       if (current.go()) { 
 
-        current.getLocation().obs = null;
+        current.where().obs = null;
 
         for (int move = 0; move < moves.length; move++) {
-          board[current.getLocation().row + moves[move][0]][current.getLocation().col + moves[move][1]].explodedOn();
+          board[current.where().row + moves[move][0]][current.where().col + moves[move][1]].explodedOn();
         }
 
-        bombs.get(i).getLocation().display();
+        bombs.get(i).where().display();
         bombs.remove(i);
         i--;
       }
     }
+  }
+  
+  Player getPlayer(){
+    return player;
+  }
+  
+  int numRows(){
+    return board.length;
+  }
+  int numCols(){
+    return board[0].length;
+  }
+  Tile get(int row,int col){
+    return board[row][col];
   }
 }

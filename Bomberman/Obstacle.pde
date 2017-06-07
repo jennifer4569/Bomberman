@@ -20,7 +20,17 @@ public class Obstacle {
       isBreakable = false;
     }
   }
-  public Tile getLocation() {
+  public Tile where() {
     return location;
+  }
+  int getType(){
+    return type;
+  }
+  char toChar(){
+    if (isBreakable){
+      return ' ';
+    } else {
+      return '#';
+    }
   }
 }

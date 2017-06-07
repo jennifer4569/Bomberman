@@ -72,4 +72,15 @@ void explodedOn(){
   boolean hasObstacle() {
     return obs != null;
   }
+  
+  int getRow(){
+    return row;
+  }
+  int getCol(){
+    return col;
+  }
+  
+  Obstacle getThingHere(){
+    return obs;
+  }
 }
