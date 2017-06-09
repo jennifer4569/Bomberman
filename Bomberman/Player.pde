@@ -17,33 +17,33 @@ public class Player extends Obstacle {
        if(animateNum / 10 > 7){
         animateNum = 0; 
         }
-      image(loadImage("/Sprites/Player/Up" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+      image(loadImage("./Sprites/Player/Up" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
     }
     if(animateType == 1){
        if(animateNum / 10 > 7){
         animateNum = 0; 
         }
-      image(loadImage("/Sprites/Player/Down" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+      image(loadImage("./Sprites/Player/Down" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
     }
     if(animateType == 2){
        if(animateNum / 10 > 7){
         animateNum = 0; 
         }
-      image(loadImage("/Sprites/Player/Right" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+      image(loadImage("./Sprites/Player/Right" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
     }
     
     if(animateType == 3){
        if(animateNum / 10 > 7){
         animateNum = 0; 
         }
-      image(loadImage("/Sprites/Player/Left" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+      image(loadImage("./Sprites/Player/Left" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
     }
     
     if(animateType == 4){  
        if(animateNum / 10 > 11){
         animateNum = 0; 
         }
-     image(loadImage("/Sprites/Player/Still" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+     image(loadImage("./Sprites/Player/Still" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
     }
     
    animateNum++;

@@ -11,6 +11,7 @@ public class Tile {
   float y;
   float sideL;
   Obstacle obs;
+  Obstacle player;
   
   boolean isRed;
 
@@ -34,7 +35,12 @@ public class Tile {
    }*/
 
   public void place(Obstacle obs) {
-    this.obs=obs;
+    if(obs.type == 2){
+     player = obs; 
+    }
+    else{
+      this.obs=obs;
+    }
   }
 
   public void display() {

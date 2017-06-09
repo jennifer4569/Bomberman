@@ -7,7 +7,7 @@ public class Bomb extends Obstacle {
 
   boolean go() { //returns true if it exploded
     timer++;
-    if (timer >= 100) {
+    if (timer >= 50) {
       //explode();
       return true;
     }
@@ -25,7 +25,7 @@ void display(){
   if(animateNum / 10 > 2){
     animateNum = 0;
   }
-  image(loadImage("/Sprites/Bomb/Bomb" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+  image(loadImage("./Sprites/Bomb/Bomb" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
   animateNum++;
 }
 
