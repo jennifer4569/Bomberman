@@ -1,5 +1,6 @@
 public class Bomb extends Obstacle {
   float timer;
+  int animateNum;
   public Bomb(Tile location) {
     super(3, location);
   }
@@ -21,7 +22,11 @@ public class Bomb extends Obstacle {
   }
 */
 void display(){
-          image(loadImage("Bomb.png"), where().x, where().y, where().sideL, where().sideL); 
+  if(animateNum / 10 > 2){
+    animateNum = 0;
+  }
+  image(loadImage("/Sprites/Bomb/Bomb" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+  animateNum++;
 }
 
 }
