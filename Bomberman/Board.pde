@@ -122,7 +122,9 @@ public class Board {
     int newRow = player.where().row + moves[move][0];
     int newCol = player.where().col + moves[move][1];
 
+      player.setAnimate(move);
     if (!board[newRow][newCol].hasObstacle()) {
+      player.setAnimate(move);
       board[newRow][newCol].obs = player;
       board[player.where().row][player.where().col].obs = null;
       player.location = board[newRow][newCol];
@@ -135,6 +137,7 @@ public class Board {
   }
 
   void go() {
+    player.go();
     Bomb current;
     for (int i = 0; i < bombs.size(); i++) {
       current = bombs.get(i);
