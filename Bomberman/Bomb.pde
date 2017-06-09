@@ -20,4 +20,8 @@ public class Bomb extends Obstacle {
     getLocation().display();
   }
 */
+void display(){
+          image(loadImage("Bomb.png"), where().x, where().y, where().sideL, where().sideL); 
+}
+
 }

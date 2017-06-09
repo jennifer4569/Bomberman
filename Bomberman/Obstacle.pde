@@ -33,4 +33,14 @@ public class Obstacle {
       return '#';
     }
   }
+  
+  void display(){
+    if(isBreakable){
+          image(loadImage("BreakableObstacle.png"), where().x, where().y, where().sideL, where().sideL); 
+    }
+    else{
+      
+        image(loadImage("UnbreakableObstacle.png"), where().x, where().y, where().sideL, where().sideL); 
+    }
+  }
 }

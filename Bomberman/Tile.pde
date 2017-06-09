@@ -39,6 +39,8 @@ public class Tile {
 
   public void display() {
     if (obs != null) {
+      obs.display();
+      /*
       if (obs.isBreakable) {
         if (obs.type == 0) {
           image(loadImage("BreakableObstacle.png"), x, y, sideL, sideL);
@@ -49,7 +51,7 @@ public class Tile {
         }
       } else {
         image(loadImage("UnbreakableObstacle.png"), x, y, sideL, sideL);
-      }
+      }*/
     } else {
       if(!isRed){
         fill(225, 225, 225); 
