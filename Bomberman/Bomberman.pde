@@ -1,7 +1,7 @@
 Main m;
 
 void setup() {
-  size(600, 600);
+  size(600,600);
   m = new Main();
 }
 void draw() {
