@@ -23,24 +23,23 @@ public class Obstacle {
   public Tile where() {
     return location;
   }
-  int getType(){
+  int getType() {
     return type;
   }
-  char toChar(){
-    if (isBreakable){
+  char toChar() {
+    if (isBreakable) {
       return ' ';
     } else {
       return '#';
     }
   }
-  
-  void display(){
-    if(isBreakable){
-          image(loadImage("BreakableObstacle.png"), where().x, where().y, where().sideL, where().sideL); 
-    }
-    else{
-      
-        image(loadImage("UnbreakableObstacle.png"), where().x, where().y, where().sideL, where().sideL); 
+
+  void display() {
+    if (isBreakable) {
+      image(loadImage("BreakableObstacle.png"), where().x, where().y, where().sideL, where().sideL);
+    } else {
+
+      image(loadImage("UnbreakableObstacle.png"), where().x, where().y, where().sideL, where().sideL);
     }
   }
 }

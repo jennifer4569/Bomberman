@@ -4,7 +4,7 @@ public class Tile {
   //1: DOWN
   //2: RIGHT
   //3: LEFT
-  
+
   int row;
   int col;
   float x;
@@ -12,8 +12,8 @@ public class Tile {
   float sideL;
   Obstacle obs;
   Obstacle player;
-  
-  boolean isRed;
+
+  int isRed;
 
   public Tile(int row, int col, float x, float y, float sideL) { //randomly generates obs
     this.row = row;
@@ -35,10 +35,9 @@ public class Tile {
    }*/
 
   public void place(Obstacle obs) {
-    if(obs.type == 2){
-     player = obs; 
-    }
-    else{
+    if (obs.type == 2) {
+      player = obs;
+    } else {
       this.obs=obs;
     }
   }
@@ -48,47 +47,47 @@ public class Tile {
       obs.display();
       /*
       if (obs.isBreakable) {
-        if (obs.type == 0) {
-          image(loadImage("BreakableObstacle.png"), x, y, sideL, sideL);
-        } else if (obs.type == 2) {
-          image(loadImage("Player.png"), x, y, sideL, sideL);
-        } else {
-          image(loadImage("Bomb.png"), x, y, sideL, sideL);
-        }
-      } else {
-        image(loadImage("UnbreakableObstacle.png"), x, y, sideL, sideL);
-      }*/
+       if (obs.type == 0) {
+       image(loadImage("BreakableObstacle.png"), x, y, sideL, sideL);
+       } else if (obs.type == 2) {
+       image(loadImage("Player.png"), x, y, sideL, sideL);
+       } else {
+       image(loadImage("Bomb.png"), x, y, sideL, sideL);
+       }
+       } else {
+       image(loadImage("UnbreakableObstacle.png"), x, y, sideL, sideL);
+       }*/
+    } else if (player!=null) {
+      player.display();
     } else {
-      if(!isRed){
-        fill(225, 225, 225); 
-      }
-      else{
-         fill(255,0,0); 
+      if (isRed<=0) {
+        fill(225, 225, 225);
+      } else {
+        fill(255, 0, 0); 
+        isRed--;
       }
       rect(x, y, sideL, sideL);
     }
-
-    //rect(x, y, sideL, sideL);
   }
-void explodedOn(){
-  isRed = true;
-  if(obs != null && obs.isBreakable){
-     obs = null; 
+  void explodedOn() {
+    isRed = 17;
+    if (obs != null && obs.isBreakable) {
+      obs = null;
+    }
   }
-}
 
   boolean hasObstacle() {
     return obs != null;
   }
-  
-  int getRow(){
+
+  int getRow() {
     return row;
   }
-  int getCol(){
+  int getCol() {
     return col;
   }
-  
-  Obstacle getThingHere(){
+
+  Obstacle getThingHere() {
     return obs;
   }
 }

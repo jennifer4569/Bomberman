@@ -1,7 +1,7 @@
 Main m;
 
 void setup() {
-  size(600,600);
+  size(600, 600);
   m = new Main();
 }
 void draw() {
@@ -10,6 +10,7 @@ void draw() {
 }
 
 void keyPressed() {
+  if(m.b.player != null){
   if (key == CODED) {
     if (keyCode == UP) {
       m.b.movePlayer(0);
@@ -26,5 +27,5 @@ void keyPressed() {
   }
   if (key == ' ') {
     m.b.dropBomb();
-  }
+  }}
 }

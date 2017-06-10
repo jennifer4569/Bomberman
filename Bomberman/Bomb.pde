@@ -14,19 +14,18 @@ public class Bomb extends Obstacle {
     return false;
   }/*
   void explode(){
-    getLocation().obs = null;
-    for(Tile t : ){
-     t.turnRed(); 
+   getLocation().obs = null;
+   for(Tile t : ){
+   t.turnRed(); 
+   }
+   getLocation().display();
+   }
+   */
+  void display() {
+    if (animateNum / 10 > 2) {
+      animateNum = 0;
     }
-    getLocation().display();
+    image(loadImage("./Sprites/Bomb/Bomb" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
+    animateNum++;
   }
-*/
-void display(){
-  if(animateNum / 10 > 2){
-    animateNum = 0;
-  }
-  image(loadImage("./Sprites/Bomb/Bomb" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL); 
-  animateNum++;
-}
-
 }

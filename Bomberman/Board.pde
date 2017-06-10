@@ -110,25 +110,24 @@ public class Board {
    if(increment > height / board.length){
    increment = height / board.length; 
    }*/
-
     for (int r = 0; r < board.length; r++) {
       for (int c = 0; c < board[0].length; c++) {
         board[r][c].display();
       }
     }
+
   } 
   void movePlayer(int move) {
-
-    int newRow = player.where().row + moves[move][0];
-    int newCol = player.where().col + moves[move][1];
+      int newRow = player.where().row + moves[move][0];
+      int newCol = player.where().col + moves[move][1];
 
       player.setAnimate(move);
-    if (!board[newRow][newCol].hasObstacle()) {
-      player.setAnimate(move);
-      board[newRow][newCol].obs = player;
-      board[player.where().row][player.where().col].obs = null;
-      player.location = board[newRow][newCol];
-    }
+      if (!board[newRow][newCol].hasObstacle()) {
+        player.setAnimate(move);
+        board[newRow][newCol].player = player;
+        board[player.where().row][player.where().col].player = null;
+        player.location = board[newRow][newCol];
+      }
   }
   void dropBomb() {
     Bomb toAdd = new Bomb(player.where());
@@ -137,36 +136,47 @@ public class Board {
   }
 
   void go() {
-    player.go();
-    Bomb current;
-    for (int i = 0; i < bombs.size(); i++) {
-      current = bombs.get(i);
-      if (current.go()) { 
+    if (player!= null) {
+      if (player.location.isRed > 0) {
+        noLoop();
+        player.die();
+        player = null;
+        loop();
+        //stop();
+      } else {
+        player.go();
+        Bomb current;
+        for (int i = 0; i < bombs.size(); i++) {
+          current = bombs.get(i);
+          if (current.go()) { 
 
-        current.where().obs = null;
+            current.where().obs = null;
 
-        for (int move = 0; move < moves.length; move++) {
-          board[current.where().row + moves[move][0]][current.where().col + moves[move][1]].explodedOn();
+            for (int move = 0; move < moves.length; move++) {
+              board[current.where().row + moves[move][0]][current.where().col + moves[move][1]].explodedOn();
+            }
+           current.where().explodedOn();
+
+            bombs.get(i).where().display();
+            bombs.remove(i);
+            i--;
+          }
         }
-
-        bombs.get(i).where().display();
-        bombs.remove(i);
-        i--;
       }
     }
   }
-  
-  Player getPlayer(){
+
+  Player getPlayer() {
     return player;
   }
-  
-  int numRows(){
+
+  int numRows() {
     return board.length;
   }
-  int numCols(){
+  int numCols() {
     return board[0].length;
   }
-  Tile get(int row,int col){
+  Tile get(int row, int col) {
     return board[row][col];
   }
 }
