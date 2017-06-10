@@ -115,19 +115,18 @@ public class Board {
         board[r][c].display();
       }
     }
-
   } 
   void movePlayer(int move) {
-      int newRow = player.where().row + moves[move][0];
-      int newCol = player.where().col + moves[move][1];
+    int newRow = player.where().row + moves[move][0];
+    int newCol = player.where().col + moves[move][1];
 
+    player.setAnimate(move);
+    if (!board[newRow][newCol].hasObstacle()) {
       player.setAnimate(move);
-      if (!board[newRow][newCol].hasObstacle()) {
-        player.setAnimate(move);
-        board[newRow][newCol].player = player;
-        board[player.where().row][player.where().col].player = null;
-        player.location = board[newRow][newCol];
-      }
+      board[newRow][newCol].player = player;
+      board[player.where().row][player.where().col].player = null;
+      player.location = board[newRow][newCol];
+    }
   }
   void dropBomb() {
     Bomb toAdd = new Bomb(player.where());
@@ -138,11 +137,8 @@ public class Board {
   void go() {
     if (player!= null) {
       if (player.location.isRed > 0) {
-        noLoop();
         player.die();
         player = null;
-        loop();
-        //stop();
       } else {
         player.go();
         Bomb current;
@@ -155,7 +151,7 @@ public class Board {
             for (int move = 0; move < moves.length; move++) {
               board[current.where().row + moves[move][0]][current.where().col + moves[move][1]].explodedOn();
             }
-           current.where().explodedOn();
+            current.where().explodedOn();
 
             bombs.get(i).where().display();
             bombs.remove(i);

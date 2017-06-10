@@ -46,17 +46,17 @@ public class Player extends Obstacle {
       image(loadImage("./Sprites/Player/Still" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
     }/*
     if(animateType == 5){
-      if (animateNum / 10 > 4) {
-        where().display();
-        where().player =null;
-        stop();
-      }
-      image(loadImage("./Sprites/Player/Die" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);  
-    }*/
+     if (animateNum / 10 > 4) {
+     where().display();
+     where().player =null;
+     stop();
+     }
+     image(loadImage("./Sprites/Player/Die" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);  
+     }*/
     animateNum++;
   }
   void die() {
-   for (int i = 0; i <= 4; i++) {
+    for (int i = 0; i <= 4; i++) {
       image(loadImage("./Sprites/Player/Die" + i + ".png"), where().x, where().y, where().sideL, where().sideL);
       //delay(100);
     }
@@ -64,12 +64,10 @@ public class Player extends Obstacle {
     //image(loadImage("./Sprites/Player/Die0.png"), where().x, where().y, where().sideL, where().sideL);
     //image(loadImage("./Sprites/Player/Die0.png"),0, 0, where().sideL, where().sideL);
     //delay(100);
-    
+
     //animateType = 5;
     //animateNum = 0;
     where().player = null;
-    
-    
   }
   void setAnimate(int type) {
     if (animateType != type) {
