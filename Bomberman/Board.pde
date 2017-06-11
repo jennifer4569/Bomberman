@@ -8,6 +8,8 @@ public class Board {
   Tile[][] board;
   Player player;
   ArrayList<Bomb> bombs;
+  //ArrayList<Enemy> enemies;
+  Enemy enemy;
   int startX;
   int startY;
   float increment;
@@ -16,6 +18,7 @@ public class Board {
     this.startY = startY;
     initBoard(fileName);
     bombs = new ArrayList<Bomb>();
+    //enemies = new ArrayList<Enemy>();
   }
   void initBoard(String fileName) {
     int numRows = 0;
@@ -62,6 +65,11 @@ public class Board {
             System.out.println("Board should have exactly one player!");
             System.exit(0);
           }
+        } else if (current.equals("E")) {
+          enemy = new Enemy(board[r][c], this);
+          //enemies.add(enemy);
+          //enemies.add(new Enemy(board[r][c], this));
+          board[r][c].place(enemy);
         } else if (!current.equals(" ")) {
           System.out.println("Board should only have '#', '-', 'P', or ' '!");
           System.exit(0);
@@ -139,7 +147,11 @@ public class Board {
       if (player.location.isRed > 0) {
         player.die();
         player = null;
-      } else {
+      } else if (enemy != null && enemy.location.isRed > 0) {
+        enemy.die();
+        enemy = null;
+      }
+      else{
         player.go();
         Bomb current;
         for (int i = 0; i < bombs.size(); i++) {
@@ -157,6 +169,9 @@ public class Board {
             bombs.remove(i);
             i--;
           }
+        }
+        if(enemy !=null){
+         enemy.go();
         }
       }
     }
