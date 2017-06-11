@@ -25,6 +25,18 @@ public class Main {
     if(play &&b.enemy!=null&& ticks%7==0){
       Tile L=p.findNextMove(b.enemy);
       if(L.player==null && L.obs==null){
+        if(L.row - b.enemy.where().row == -1){
+          b.enemy.setAnimate(0); 
+        }
+        if(L.row - b.enemy.where().row == 1){
+          b.enemy.setAnimate(1); 
+        }
+        if(L.col - b.enemy.where().col == 1){
+          b.enemy.setAnimate(2); 
+        }
+        if(L.col - b.enemy.where().col == -1){
+          b.enemy.setAnimate(3); 
+        }
         b.enemy.setLocation(L);
       }else{
         b.enemyBomb();

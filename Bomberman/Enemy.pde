@@ -1,6 +1,7 @@
 class Enemy extends Obstacle {
   int animateNum;
   int animateType;
+  int waitTimer;
   public Enemy(Tile location) {
     super(4, location);
     animateType = 4;
@@ -13,6 +14,13 @@ class Enemy extends Obstacle {
     this.location.enemy=null;
     this.location = location;
     this.location.place(this);
+  }
+  void setAnimate(int type) {
+    if (animateType != type) {
+      animateType = type;  
+      animateNum = 0;
+    }
+    waitTimer = 100;
   }
   void display() {
     if (animateType == 0) {
@@ -55,5 +63,12 @@ class Enemy extends Obstacle {
       //delay(100);
     }
     where().enemy = null;
+  }
+  void go() {
+    if (waitTimer <= 0 && animateType != 4) {
+      animateType = 4;
+      animateNum = 0;
+    }
+    waitTimer--;
   }
 }
