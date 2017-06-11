@@ -20,39 +20,39 @@ class Enemy extends Obstacle {
       if (animateNum / 10 > 7) {
         animateNum = 0;
       }
-      image(loadImage("./Sprites/Player/Up" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
+      image(loadImage("./Sprites/EnemyRed/Up" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
     }
     if (animateType == 1) {
       if (animateNum / 10 > 7) {
         animateNum = 0;
       }
-      image(loadImage("./Sprites/Player/Down" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
+      image(loadImage("./Sprites/EnemyRed/Down" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
     }
     if (animateType == 2) {
       if (animateNum / 10 > 7) {
         animateNum = 0;
       }
-      image(loadImage("./Sprites/Player/Right" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
+      image(loadImage("./Sprites/EnemyRed/Right" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
     }
 
     if (animateType == 3) {
       if (animateNum / 10 > 7) {
         animateNum = 0;
       }
-      image(loadImage("./Sprites/Player/Left" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
+      image(loadImage("./Sprites/EnemyRed/Left" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
     }
 
     if (animateType == 4) {  
       if (animateNum / 10 > 11) {
         animateNum = 0;
       }
-      image(loadImage("./Sprites/Player/Still" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
+      image(loadImage("./Sprites/EnemyRed/Still" + animateNum / 10 + ".png"), where().x, where().y, where().sideL, where().sideL);
     }
     animateNum++;
   }
   void die() {
     for (int i = 0; i <= 4; i++) {
-      image(loadImage("./Sprites/Player/Die" + i + ".png"), where().x, where().y, where().sideL, where().sideL);
+      image(loadImage("./Sprites/EnemyRed/Die" + i + ".png"), where().x, where().y, where().sideL, where().sideL);
       //delay(100);
     }
     where().enemy = null;
