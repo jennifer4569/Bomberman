@@ -1,17 +1,20 @@
 class Enemy extends Obstacle {
+  int animateNum;
+  int animateType;
   Pathfinder p;
   public Enemy(Tile location, Board b) {
     super(4, location);
     p = new Pathfinder(b);
+    animateType = 4;
   }
-  void go(){
-     setLocation(p.findNextMove(this)); 
+  void go() {
+    setLocation(p.findNextMove(this));
   }
-  void display(){
-    image(loadImage("Player.png"), where().x, where().y, where().sideL, where().sideL);
-  }
-  /*
-  
+  /*void display(){
+   image(loadImage("Player.png"), where().x, where().y, where().sideL, where().sideL);
+   }*/
+
+
   void display() {
     if (animateType == 0) {
       if (animateNum / 10 > 7) {
@@ -47,5 +50,11 @@ class Enemy extends Obstacle {
     }
     animateNum++;
   }
-  */
+  void die() {
+    for (int i = 0; i <= 4; i++) {
+      image(loadImage("./Sprites/Player/Die" + i + ".png"), where().x, where().y, where().sideL, where().sideL);
+      //delay(100);
+    }
+    where().enemy = null;
+  }
 }

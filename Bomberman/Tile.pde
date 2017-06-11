@@ -37,10 +37,9 @@ public class Tile {
   public void place(Obstacle obs) {
     if (obs.type == 2) {
       player = obs;
-    } else if(obs.type ==4){
-        enemy = obs;
-    }
-    else{
+    } else if (obs.type ==4) {
+      enemy = obs;
+    } else {
       this.obs=obs;
     }
   }
@@ -50,10 +49,9 @@ public class Tile {
       obs.display();
     } else if (player!=null) {
       player.display();
-    } else if (enemy != null){
+    } else if (enemy != null) {
       enemy.display();
-    }
-    else{
+    } else {
       if (isRed<=0) {
         fill(225, 225, 225);
       } else {

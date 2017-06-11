@@ -32,11 +32,11 @@ void createLevel() {
     m = new Main(false);
   }
 }
-void removeButtons(){
-    cp5.getController("begin").remove();
-    cp5.getController("createLevel").remove();
-    cp5.getController("quitGame").remove();
-    background(100); 
+void removeButtons() {
+  cp5.getController("begin").remove();
+  cp5.getController("createLevel").remove();
+  cp5.getController("quitGame").remove();
+  background(100);
 }
 void quitGame() {
   if (finishedSetup && stage == 0) {
@@ -45,8 +45,7 @@ void quitGame() {
 }
 
 void draw() {
-  if(stage == 1){
-    
+  if (stage == 1) {
   }
   if (stage == 2) {
     if (m.b.player != null) {

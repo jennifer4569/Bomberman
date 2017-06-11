@@ -65,12 +65,12 @@ public class Board {
             System.out.println("Board should have exactly one player!");
             System.exit(0);
           }
-        } else if(current.equals("E")){
+        } else if (current.equals("E")) {
           enemy = new Enemy(board[r][c], this);
           //enemies.add(enemy);
           //enemies.add(new Enemy(board[r][c], this));
           board[r][c].place(enemy);
-        }else if (!current.equals(" ")) {
+        } else if (!current.equals(" ")) {
           System.out.println("Board should only have '#', '-', 'P', or ' '!");
           System.exit(0);
         }
@@ -147,7 +147,11 @@ public class Board {
       if (player.location.isRed > 0) {
         player.die();
         player = null;
-      } else {
+      } else if (enemy != null && enemy.location.isRed > 0) {
+        enemy.die();
+        enemy = null;
+      }
+      else{
         player.go();
         Bomb current;
         for (int i = 0; i < bombs.size(); i++) {
@@ -166,7 +170,9 @@ public class Board {
             i--;
           }
         }
-        enemy.go();
+        if(enemy !=null){
+         enemy.go();
+        }
       }
     }
   }
