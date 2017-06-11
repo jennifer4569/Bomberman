@@ -23,6 +23,9 @@ public class Obstacle {
   public Tile where() {
     return location;
   }
+  public void setLocation(Tile location){
+   this.location = location; 
+  }
   int getType() {
     return type;
   }
