@@ -24,7 +24,7 @@ public class Main {
     b.go(play);
     if(play &&b.enemy!=null&& ticks%7==0){
       Tile L=p.findNextMove(b.enemy);
-      if(L.obs==null){
+      if(L.player==null && L.obs==null){
         b.enemy.setLocation(L);
       }else{
         b.enemyBomb();
