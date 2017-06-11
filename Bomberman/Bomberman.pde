@@ -11,7 +11,7 @@ void setup() {
   size(600, 600);
   cp5 = new ControlP5(this);
   //menuSetup: start, create level, options, quit
-  //finishedSetup = false;
+
   cp5.addButton("begin").setValue(10).setPosition(100, 100).setSize(100, 100);
   cp5.addButton("createLevel").setValue(10).setPosition(400, 100).setSize(100, 100);
   cp5.addButton("quitGame").setValue(20).setPosition(100, 400).setSize(100, 100);
@@ -22,7 +22,7 @@ void begin() {
   if (finishedSetup && stage == 0) {
     removeButtons();
     stage = 2;
-    m = new Main();
+    m = new Main(true);
   }
 }
 void createLevel() {
@@ -46,7 +46,10 @@ void quitGame() {
 
 void draw() {
   if (stage == 1) {
+    m.go();
+    m.display();
   }
+  
   if (stage == 2) {
     if (m.b.player != null) {
       m.go();
@@ -57,7 +60,7 @@ void draw() {
   }
 }
 void playAgain() {
-  m = new Main();
+  m = new Main(true);
   stage = 2;
 }
 void keyPressed() {

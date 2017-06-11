@@ -109,8 +109,6 @@ public class Board {
       x = startX;
       y += increment;
     }
-    board[0][0].obs = null;
-    board[0][0].display();
   }
 
   public void display() {/*
@@ -142,38 +140,41 @@ public class Board {
     board[player.where().row][player.where().col].obs = toAdd;
   }
 
-  void go() {
-    if (player!= null) {
-      if (player.location.isRed > 0) {
-        player.die();
-        player = null;
-      } else if (enemy != null && enemy.location.isRed > 0) {
-        enemy.die();
-        enemy = null;
-      }
-      else{
-        player.go();
-        Bomb current;
-        for (int i = 0; i < bombs.size(); i++) {
-          current = bombs.get(i);
-          if (current.go()) { 
+  void go(boolean play) {
+    if (play) {
+      if (player!= null) {
+        if (player.location.isRed > 0) {
+          player.die();
+          player = null;
+        } else if (enemy != null && enemy.location.isRed > 0) {
+          enemy.die();
+          enemy = null;
+        } else {
+          player.go();
+          Bomb current;
+          for (int i = 0; i < bombs.size(); i++) {
+            current = bombs.get(i);
+            if (current.go()) { 
 
-            current.where().obs = null;
+              current.where().obs = null;
 
-            for (int move = 0; move < moves.length; move++) {
-              board[current.where().row + moves[move][0]][current.where().col + moves[move][1]].explodedOn();
+              for (int move = 0; move < moves.length; move++) {
+                board[current.where().row + moves[move][0]][current.where().col + moves[move][1]].explodedOn();
+              }
+              current.where().explodedOn();
+
+              bombs.get(i).where().display();
+              bombs.remove(i);
+              i--;
             }
-            current.where().explodedOn();
-
-            bombs.get(i).where().display();
-            bombs.remove(i);
-            i--;
+          }
+          if (enemy !=null) {
+            enemy.go();
           }
         }
-        if(enemy !=null){
-         enemy.go();
-        }
       }
+    } else {
+      
     }
   }
 
