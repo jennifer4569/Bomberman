@@ -66,7 +66,7 @@ public class Board {
             System.exit(0);
           }
         } else if (current.equals("E")) {
-          enemy = new Enemy(board[r][c], this);
+          enemy = new Enemy(board[r][c]);
           //enemies.add(enemy);
           //enemies.add(new Enemy(board[r][c], this));
           board[r][c].place(enemy);
@@ -134,12 +134,34 @@ public class Board {
       player.location = board[newRow][newCol];
     }
   }
+  
+  void danger(int row, int col){
+    board[row][col].danger++;
+    if (row<board.length-1){
+      board[row+1][col].danger++;
+    }
+    if (row>0){
+      board[row-1][col].danger++;
+    }
+    if (col<board[0].length-1){
+      board[row][col+1].danger++;
+    }
+    if(col>0){
+      board[row][col-1].danger++;
+    }
+  }
   void dropBomb() {
     Bomb toAdd = new Bomb(player.where());
     bombs.add(toAdd);
     board[player.where().row][player.where().col].obs = toAdd;
+    danger(player.where().row,player.where().col);
   }
-
+  void enemyBomb(){
+    Bomb toAdd = new Bomb(enemy.where());
+    bombs.add(toAdd);
+    board[enemy.where().row][enemy.where().col].obs = toAdd;
+    danger(enemy.where().row,enemy.where().col);
+  }
   void go(boolean play) {
     if (play) {
       if (player!= null) {
@@ -168,9 +190,6 @@ public class Board {
               i--;
             }
           }
-          if (enemy !=null) {
-            enemy.go();
-          }
         }
       }
     } else {
@@ -191,4 +210,5 @@ public class Board {
   Tile get(int row, int col) {
     return board[row][col];
   }
+  
 }

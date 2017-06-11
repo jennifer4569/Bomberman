@@ -4,6 +4,7 @@ public class Tile {
   //1: DOWN
   //2: RIGHT
   //3: LEFT
+  int danger;
 
   int row;
   int col;
@@ -21,6 +22,7 @@ public class Tile {
     this.x = x;
     this.y = y;
     this.sideL = sideL;
+    danger=0;
     /*if((int)(Math.random() * 1000) % 100 < 50){ //50% chance for obstacle
      obs = new Obstacle((int)(Math.random() * 1000) % 100 < 50); //50% chance outta those to have breakable
      }*/
@@ -63,6 +65,7 @@ public class Tile {
   }
   void explodedOn() {
     isRed = 17;
+    danger--;
     if (obs != null && obs.isBreakable) {
       obs = null;
     }
@@ -81,5 +84,13 @@ public class Tile {
 
   Obstacle getThingHere() {
     return obs;
+  }
+  
+  char toChar() {
+    if (obs==null || obs.isBreakable) {
+      return ' ';
+    } else {
+      return '#';
+    }
   }
 }

@@ -1,4 +1,6 @@
 import java.util.NoSuchElementException;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Pathfinder {
   private Board board;
@@ -20,9 +22,11 @@ public class Pathfinder {
     }
 
     public int getWeight() {
-      if (L.getThingHere()==null) {
+      if(L.danger>0){
+        return traveled+10000;
+      } else if (L.obs==null) {
         return traveled+1;
-      } else if (L.getThingHere().getType()==0) {
+      } else if (L.obs.getType()==0) {
         return traveled+5;
       } else {
         return traveled+10000;
@@ -145,20 +149,34 @@ public class Pathfinder {
       }
     }
   }
-
+  public boolean hasSafeMoves(Enemy e){
+    Tile[] moves = {board.get(e.where().row-1,e.where().col),board.get(e.where().row+1,e.where().col),board.get(e.where().row,e.where().col+1),board.get(e.where().row,e.where().col-1)};
+    for (Tile L : moves){
+      if (L.isRed<=0 && L.danger==0 && L.obs==null){
+        return true;
+      }
+    }
+    return false;
+    
+    
+  }
   public Tile findNextMove(Enemy e) {
-    //if(e.where().getDanger()>0){
-    return runAway(e);
-    //} else {
-    // return pathfind(e);
-    //}
+    if(e.where().danger>0){
+      return runAway(e);
+    } else {
+      if(hasSafeMoves(e)){
+        return pathfind(e);
+      }else{
+        return e.where();
+      }
+    }
   }
 
   private Tile pathfind(Enemy e) {
     char[][] b=new char[board.numRows()][board.numCols()];
     for (int i=0; i<board.numRows(); i++) {
       for (int i2=0; i2<board.numCols(); i2++) {
-        b[i][i2]=board.get(i, i2).getThingHere().toChar();
+        b[i][i2]=board.get(i, i2).toChar();
       }
     }
 
@@ -190,7 +208,7 @@ public class Pathfinder {
         }
       }
     }
-    if (solved) {
+    if (solved && current!=null && current.L!=e.where()) {
       while (current.previous.L!=e.where()) {
         current=current.previous;
       }
@@ -199,7 +217,59 @@ public class Pathfinder {
     return e.where();
   }
 
+  private class QNode{
+   Tile L;
+   QNode previous;
+   public QNode(Tile L, QNode previous){
+     this.L=L;
+     this.previous=previous;
+   }
+  }
   private Tile runAway(Enemy e) {
+    char[][] b=new char[board.numRows()][board.numCols()];
+    for (int i=0; i<board.numRows(); i++) {
+      for (int i2=0; i2<board.numCols(); i2++) {
+        if (board.get(i, i2).obs==null){
+          b[i][i2]=' ';
+        }else{
+          b[i][i2]='#';
+        }
+      }
+    }
+    Queue<QNode> frontier=new LinkedList<QNode>();
+    frontier.add(new QNode(e.where(),null));
+    QNode current=null;
+    boolean solved=false;
+    while (frontier.peek()!=null && !solved) {
+      current=frontier.remove();
+      if (current.L.isRed<=0 && current.L.danger==0) {
+        solved=true;
+      } else {
+        b[current.L.getRow()][current.L.getCol()]='.';
+        if (b[current.L.getRow()+1][current.L.getCol()]==' ') {
+          frontier.add(new QNode(board.get(current.L.getRow()+1, current.L.getCol()), current));
+          b[current.L.getRow()+1][current.L.getCol()]='?';
+        }
+        if (b[current.L.getRow()-1][current.L.getCol()]==' ') {
+          frontier.add(new QNode(board.get(current.L.getRow()-1, current.L.getCol()), current));
+          b[current.L.getRow()-1][current.L.getCol()]='?';
+        }
+        if (b[current.L.getRow()][current.L.getCol()+1]==' ') {
+          frontier.add(new QNode(board.get(current.L.getRow(), current.L.getCol()+1), current));
+          b[current.L.getRow()][current.L.getCol()+1]='?';
+        }
+        if (b[current.L.getRow()][current.L.getCol()-1]==' ') {
+          frontier.add(new QNode(board.get(current.L.getRow(), current.L.getCol()-1), current));
+          b[current.L.getRow()][current.L.getCol()-1]='?';
+        }
+      }
+    }
+    if (solved && current!=null) {
+      while (current.previous.L!=e.where()) {
+        current=current.previous;
+      }
+      return current.L;
+    }
     return e.where();
   }
 }

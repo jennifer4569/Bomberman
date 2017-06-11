@@ -24,18 +24,14 @@ public class Obstacle {
     return location;
   }
   public void setLocation(Tile location) {
+    this.location.obs=null;
     this.location = location;
+    this.location.place(this);
   }
   int getType() {
     return type;
   }
-  char toChar() {
-    if (isBreakable) {
-      return ' ';
-    } else {
-      return '#';
-    }
-  }
+  
 
   void display() {
     if (isBreakable) {

@@ -1,20 +1,19 @@
 class Enemy extends Obstacle {
   int animateNum;
   int animateType;
-  Pathfinder p;
-  public Enemy(Tile location, Board b) {
+  public Enemy(Tile location) {
     super(4, location);
-    p = new Pathfinder(b);
     animateType = 4;
-  }
-  void go() {
-    setLocation(p.findNextMove(this));
   }
   /*void display(){
    image(loadImage("Player.png"), where().x, where().y, where().sideL, where().sideL);
    }*/
 
-
+  public void setLocation(Tile location) {
+    this.location.enemy=null;
+    this.location = location;
+    this.location.place(this);
+  }
   void display() {
     if (animateType == 0) {
       if (animateNum / 10 > 7) {

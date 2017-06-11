@@ -11,7 +11,11 @@ public class Player extends Obstacle {
     super(2, location);
     animateType = 4;
   }
-
+  public void setLocation(Tile location) {
+    this.location.player=null;
+    this.location = location;
+    this.location.place(this);
+  }
   void display() {
     if (animateType == 0) {
       if (animateNum / 10 > 7) {
