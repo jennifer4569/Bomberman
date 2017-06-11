@@ -150,7 +150,7 @@ public class Pathfinder {
     //if(e.where().getDanger()>0){
     return runAway(e);
     //} else {
-    //  return pathfind(e);
+     // return pathfind(e);
     //}
   }
 

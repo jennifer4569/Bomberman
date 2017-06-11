@@ -5,58 +5,61 @@ boolean finishedSetup;
 //0: Main Menu
 //1: Create Levels
 //2: Load Levels
-//3: You died! Play again?
+//3: Play again?
 ControlP5 cp5;
 void setup() {
   size(600, 600);
   cp5 = new ControlP5(this);
-  m = new Main();
   //menuSetup: start, create level, options, quit
   //finishedSetup = false;
-  cp5.addButton("begin").setValue(10).setPosition(100,100).setSize(100,100);
-  cp5.addButton("createLevel").setValue(0).setPosition(400,100).setSize(100,100);
-  cp5.addButton("quitGame").setValue(20).setPosition(100,400).setSize(100,100);
+  cp5.addButton("begin").setValue(10).setPosition(100, 100).setSize(100, 100);
+  cp5.addButton("createLevel").setValue(10).setPosition(400, 100).setSize(100, 100);
+  cp5.addButton("quitGame").setValue(20).setPosition(100, 400).setSize(100, 100);
   finishedSetup = true;
 }
 
-void begin(){
-  if(finishedSetup && stage == 0){
+void begin() {
+  if (finishedSetup && stage == 0) {
+    removeButtons();
+    stage = 2;
+    m = new Main();
+  }
+}
+void createLevel() {
+  if (finishedSetup && stage == 0) {
+    removeButtons();
+    stage = 1;
+    m = new Main(false);
+  }
+}
+void removeButtons(){
     cp5.getController("begin").remove();
     cp5.getController("createLevel").remove();
     cp5.getController("quitGame").remove();
-    background(100);
-   stage = 2;
-  }
+    background(100); 
 }
-void createLevel(){
-  if(finishedSetup && stage == 0){
-    //cp5.getController("begin").remove();
-    //cp5.getController("createLevel").remove();
-    //cp5.getController("quitGame").remove();
-    background(100);
-   stage = 1;
-  }
-}
-void quitGame(){
-  if(finishedSetup && stage == 0){
-   System.exit(0);
+void quitGame() {
+  if (finishedSetup && stage == 0) {
+    System.exit(0);
   }
 }
 
 void draw() {
+  if(stage == 1){
+    
+  }
   if (stage == 2) {
-    if(m.b.player != null){
+    if (m.b.player != null) {
       m.go();
       m.display();
-    }
-    else{
+    } else {
       playAgain();
     }
   }
 }
-void playAgain(){
- m = new Main();
- stage = 2;
+void playAgain() {
+  m = new Main();
+  stage = 2;
 }
 void keyPressed() {
   if (stage == 2) {
@@ -78,8 +81,8 @@ void keyPressed() {
       if (key == ' ') {
         m.b.dropBomb();
       }
-      if(key == 'r'){
-       playAgain(); 
+      if (key == 'r') {
+        playAgain();
       }
     }
   }

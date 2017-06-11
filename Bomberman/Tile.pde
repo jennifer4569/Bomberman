@@ -12,7 +12,7 @@ public class Tile {
   float sideL;
   Obstacle obs;
   Obstacle player;
-
+  Obstacle enemy;
   int isRed;
 
   public Tile(int row, int col, float x, float y, float sideL) { //randomly generates obs
@@ -37,7 +37,10 @@ public class Tile {
   public void place(Obstacle obs) {
     if (obs.type == 2) {
       player = obs;
-    } else {
+    } else if(obs.type ==4){
+        enemy = obs;
+    }
+    else{
       this.obs=obs;
     }
   }
@@ -45,21 +48,12 @@ public class Tile {
   public void display() {
     if (obs != null) {
       obs.display();
-      /*
-      if (obs.isBreakable) {
-       if (obs.type == 0) {
-       image(loadImage("BreakableObstacle.png"), x, y, sideL, sideL);
-       } else if (obs.type == 2) {
-       image(loadImage("Player.png"), x, y, sideL, sideL);
-       } else {
-       image(loadImage("Bomb.png"), x, y, sideL, sideL);
-       }
-       } else {
-       image(loadImage("UnbreakableObstacle.png"), x, y, sideL, sideL);
-       }*/
     } else if (player!=null) {
       player.display();
-    } else {
+    } else if (enemy != null){
+      enemy.display();
+    }
+    else{
       if (isRed<=0) {
         fill(225, 225, 225);
       } else {
