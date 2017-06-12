@@ -13,10 +13,13 @@ The goal of the game is to be the last player standing. To achieve this goal, ea
     - **P** : Player: You may only have one player in the field
     - **E** : Enemy: You may only have one enemy in the field (As of now)
   - Creating level key characters (using interface):
+    Place your mouse on the tile you want to put your obstacle or player in, and then press one of the corresponding shortcut keys:
     - **#**, **1** : Unbreakable obstacle or wall
     - **-**, **2** : Breakable obstacle
     - **P**, **3** : Player
     - **E**, **4** : Enemy
+    - **BACKSPACE** : Delete the obstacle or player in this area
+    - **ENTER** : Save this into a file, board4.txt (manually change the name or the txt on the Board tab, line 242, which says: *PrintWriter file = createWriter("board4.txt");*)
 - **Playing the game**: You can start playing the game by pressing the begin button in the main menu.
   - Controls:
     - Use the up, down, left, right keys to navigate your player (the white player)
