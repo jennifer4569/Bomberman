@@ -5,14 +5,13 @@ boolean finishedSetup;
 //0: Main Menu
 //1: Create Levels
 //2: Load Levels
-//3: Play again?
 ControlP5 cp5;
 void setup() {
   size(600, 600);
   cp5 = new ControlP5(this);
   //menuSetup: start, create level, options, quit
 
-  cp5.addButton("begin").setValue(10).setPosition(100, 100).setSize(100, 100);
+  //cp5.addButton("begin").setValue(10).setPosition(100, 100).setSize(100, 100);
   cp5.addButton("createLevel").setValue(10).setPosition(400, 100).setSize(100, 100);
   cp5.addButton("quitGame").setValue(20).setPosition(100, 400).setSize(100, 100);
   finishedSetup = true;
@@ -33,7 +32,7 @@ void createLevel() {
   }
 }
 void removeButtons() {
-  cp5.getController("begin").remove();
+  //cp5.getController("begin").remove();
   cp5.getController("createLevel").remove();
   cp5.getController("quitGame").remove();
   background(100);
@@ -49,7 +48,7 @@ void draw() {
     m.go();
     m.display();
   }
-  
+
   if (stage == 2) {
     if (m.b.player != null) {
       m.go();
@@ -64,6 +63,31 @@ void playAgain() {
   stage = 2;
 }
 void keyPressed() {
+  if (stage == 1) {//type: 0 = breakable obstacle, 1 = unbreakable obstacle, 2 = player
+    if (key == '#' || key == '1') {
+      m.b.deleteObs(mouseX, mouseY); 
+      m.b.addObs(mouseX, mouseY, 1);
+    }
+    if (key == '-' || key == '2') {
+      m.b.deleteObs(mouseX, mouseY); 
+      m.b.addObs(mouseX, mouseY, 0);
+    }
+    if (key == 'P' || key == '3' || key == 'p') {
+      m.b.deleteObs(mouseX, mouseY); 
+      m.b.addObs(mouseX, mouseY, 2);
+    }
+    if (key == 'E' || key == '4' || key == 'e') {
+      m.b.deleteObs(mouseX, mouseY); 
+      m.b.addObs(mouseX, mouseY, 4);
+    }
+    if (key == BACKSPACE) {
+      m.b.deleteObs(mouseX, mouseY);
+    }
+    if (key == ENTER) {
+      System.out.println("SAVED!");
+      m.b.save();
+    }
+  }
   if (stage == 2) {
     if (m.b.player != null) {
       if (key == CODED) {

@@ -134,19 +134,19 @@ public class Board {
       player.location = board[newRow][newCol];
     }
   }
-  
-  void danger(int row, int col){
+
+  void danger(int row, int col) {
     board[row][col].danger++;
-    if (row<board.length-1){
+    if (row<board.length-1) {
       board[row+1][col].danger++;
     }
-    if (row>0){
+    if (row>0) {
       board[row-1][col].danger++;
     }
-    if (col<board[0].length-1){
+    if (col<board[0].length-1) {
       board[row][col+1].danger++;
     }
-    if(col>0){
+    if (col>0) {
       board[row][col-1].danger++;
     }
   }
@@ -154,13 +154,13 @@ public class Board {
     Bomb toAdd = new Bomb(player.where());
     bombs.add(toAdd);
     board[player.where().row][player.where().col].obs = toAdd;
-    danger(player.where().row,player.where().col);
+    danger(player.where().row, player.where().col);
   }
-  void enemyBomb(){
+  void enemyBomb() {
     Bomb toAdd = new Bomb(enemy.where());
     bombs.add(toAdd);
     board[enemy.where().row][enemy.where().col].obs = toAdd;
-    danger(enemy.where().row,enemy.where().col);
+    danger(enemy.where().row, enemy.where().col);
   }
   void go(boolean play) {
     if (play) {
@@ -192,8 +192,6 @@ public class Board {
           }
         }
       }
-    } else {
-      
     }
   }
 
@@ -210,5 +208,62 @@ public class Board {
   Tile get(int row, int col) {
     return board[row][col];
   }
-  
+  void addObs(float x, float y, int type) {
+    for (int r = 0; r < board.length; r++) {
+      for (int c = 0; c < board[0].length; c++) {
+        if (board[r][c].x <= x && x <= board[r][c].x + board[r][c].sideL &&
+          board[r][c].y <= y && y <= board[r][c].y + board[r][c].sideL) {
+          if (type == 0 || type == 1) {
+            board[r][c].place(new Obstacle(type, board[r][c]));
+          }
+          if (type == 2) {
+            board[r][c].place(new Player(board[r][c]));
+          }
+          if (type == 4) {
+            board[r][c].place(new Enemy(board[r][c]));
+          }
+        }
+      }
+    }
+  }
+  void deleteObs(float x, float y) {
+    for (int r = 0; r < board.length; r++) {
+      for (int c = 0; c < board[0].length; c++) {
+        if (board[r][c].x <= x && x <= board[r][c].x + board[r][c].sideL &&
+          board[r][c].y <= y && y <= board[r][c].y + board[r][c].sideL) {
+          board[r][c].obs = null;
+          board[r][c].player = null;
+          board[r][c].enemy = null;
+        }
+      }
+    }
+  }
+  void save(){
+   PrintWriter file = createWriter("board4.txt");
+    char current;
+    for(int r = 0; r < board.length; r++){
+     for( int c = 0; c < board[0].length; c++){
+       if(board[r][c].obs != null){
+         if(board[r][c].obs.type == 0){
+           current = '-'; 
+         }
+         else{
+          current = '#'; 
+         }
+       }
+       else if(board[r][c].player != null){
+        current = 'P'; 
+       }
+       else if(board[r][c].enemy != null){
+        current = 'E'; 
+       }
+       else{
+        current = ' '; 
+       }
+       file.print(current);
+     }
+     file.println();
+    }
+    file.close();
+  }
 }

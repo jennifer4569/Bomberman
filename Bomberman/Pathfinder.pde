@@ -22,7 +22,7 @@ public class Pathfinder {
     }
 
     public int getWeight() {
-      if(L.danger>0){
+      if (L.danger>0) {
         return traveled+10000;
       } else if (L.obs==null) {
         return traveled+1;
@@ -149,24 +149,22 @@ public class Pathfinder {
       }
     }
   }
-  public boolean hasSafeMoves(Enemy e){
-    Tile[] moves = {board.get(e.where().row-1,e.where().col),board.get(e.where().row+1,e.where().col),board.get(e.where().row,e.where().col+1),board.get(e.where().row,e.where().col-1)};
-    for (Tile L : moves){
-      if (L.isRed<=0 && L.danger==0 && L.obs==null){
+  public boolean hasSafeMoves(Enemy e) {
+    Tile[] moves = {board.get(e.where().row-1, e.where().col), board.get(e.where().row+1, e.where().col), board.get(e.where().row, e.where().col+1), board.get(e.where().row, e.where().col-1)};
+    for (Tile L : moves) {
+      if (L.isRed<=0 && L.danger==0 && L.obs==null) {
         return true;
       }
     }
     return false;
-    
-    
   }
   public Tile findNextMove(Enemy e) {
-    if(e.where().danger>0){
+    if (e.where().danger>0) {
       return runAway(e);
     } else {
-      if(hasSafeMoves(e)){
+      if (hasSafeMoves(e)) {
         return pathfind(e);
-      }else{
+      } else {
         return e.where();
       }
     }
@@ -217,27 +215,27 @@ public class Pathfinder {
     return e.where();
   }
 
-  private class QNode{
-   Tile L;
-   QNode previous;
-   public QNode(Tile L, QNode previous){
-     this.L=L;
-     this.previous=previous;
-   }
+  private class QNode {
+    Tile L;
+    QNode previous;
+    public QNode(Tile L, QNode previous) {
+      this.L=L;
+      this.previous=previous;
+    }
   }
   private Tile runAway(Enemy e) {
     char[][] b=new char[board.numRows()][board.numCols()];
     for (int i=0; i<board.numRows(); i++) {
       for (int i2=0; i2<board.numCols(); i2++) {
-        if (board.get(i, i2).obs==null){
+        if (board.get(i, i2).obs==null) {
           b[i][i2]=' ';
-        }else{
+        } else {
           b[i][i2]='#';
         }
       }
     }
     Queue<QNode> frontier=new LinkedList<QNode>();
-    frontier.add(new QNode(e.where(),null));
+    frontier.add(new QNode(e.where(), null));
     QNode current=null;
     boolean solved=false;
     while (frontier.peek()!=null && !solved) {

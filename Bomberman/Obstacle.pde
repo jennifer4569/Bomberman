@@ -1,7 +1,7 @@
 public class Obstacle {
   boolean isBreakable;
   Tile location;
-  int type; //type: 0 = breakable obstacle, 1 = unbreakable obstacle, 2 = player, 3 = bomb    
+  int type; //type: 0 = breakable obstacle, 1 = unbreakable obstacle, 2 = player, 3 = bomb, 4 = enemy    
   public Obstacle(boolean isBreak, Tile location) { //assume that its an obstacle
     isBreakable = isBreak; 
     this.location=location;
@@ -31,7 +31,7 @@ public class Obstacle {
   int getType() {
     return type;
   }
-  
+
 
   void display() {
     if (isBreakable) {

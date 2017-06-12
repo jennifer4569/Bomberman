@@ -85,7 +85,7 @@ public class Tile {
   Obstacle getThingHere() {
     return obs;
   }
-  
+
   char toChar() {
     if (obs==null || obs.isBreakable) {
       return ' ';
