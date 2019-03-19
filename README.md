@@ -6,7 +6,13 @@ The goal of the game is to be the last player standing. To achieve this goal, ea
 
 ## Features
 - **Main Menu**: You can start your game or exit the game. (Create Level not yet implemented in the Interface)
-- **Create level**: You can manually create your own level by using a .txt file. Go to the Main tab in Processing and on Line 12 (the line that says *b = new Board("board1.txt", 20, 10);*)
+- **Animation**: Player, enemy, and bombs have animations based on their movements.
+  - Individual sprites are available in the Sprites directory.
+- **Enemy**: Enemy pathfinds its way to the user, bombing obstacles in the way and attacking the user when it is nearby
+```diff 
+- NOTE: Due to an unknown bug, we have temporarily disabled the feature listed below.
+```
+- **Create level**: You can manually create your own level by using a .txt file. Go to the Main tab in Processing and on Line 12 (the line that says *b = new Board("board1.txt", 20, 10);*) 
   - Creating level key characters (manually):
     - **#** : Unbreakable obstacle or wall: The board must be surrounded by a layer of unbreakable obstacles
     - **-** : Breakable obstacle
@@ -25,9 +31,6 @@ The goal of the game is to be the last player standing. To achieve this goal, ea
     - Use the up, down, left, right keys to navigate your player (the white player)
     - Press spacebar to place a bomb
     - **r** : Shortcut to restart the game
-- **Animation**: Player, enemy, and bombs have animations based on their movements.
-  - Individual sprites are available in the Sprites directory.
-- **Enemy**: Enemy pathfinds its way to the user, bombing obstacles in the way and attacking the user when it is nearby
 
 ## Known Bugs
 - Create Level button does not work unless all instances of the Begin button is completely commented out.
