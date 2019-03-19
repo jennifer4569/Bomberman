@@ -15,24 +15,31 @@ The goal of the game is to be the last player standing. To achieve this goal, ea
 - **Animation**: Player, enemy, and bombs have animations based on their movements.
   - Individual sprites are available in the Sprites directory.
 - **Enemy**: Enemy pathfinds its way to the user, bombing obstacles in the way and attacking the user when it is nearby
+- **Create level**: You can manually create your own level by using a .txt file.
 
+## Creating a Level
 ```diff 
-- NOTE: Due to an unknown bug, we have temporarily disabled the feature listed below.
+- NOTE: Due to an unknown bug, we have temporarily disabled this feature.
 ```
-- **Create level**: You can manually create your own level by using a .txt file. Go to the Main tab in Processing and on Line 12 (the line that says *b = new Board("board1.txt", 20, 10);*) 
-  - Creating level key characters (manually):
-    - **#** : Unbreakable obstacle or wall: The board must be surrounded by a layer of unbreakable obstacles
-    - **-** : Breakable obstacle
-    - **P** : Player: You may only have one player in the field
-    - **E** : Enemy: You may only have one enemy in the field (As of now)
-  - Creating level key characters (using interface):
-    Place your mouse on the tile you want to put your obstacle or player in, and then press one of the corresponding shortcut keys:
-    - **#**, **1** : Unbreakable obstacle or wall
-    - **-**, **2** : Breakable obstacle
-    - **P**, **3** : Player
-    - **E**, **4** : Enemy
-    - **BACKSPACE** : Delete the obstacle or player in this area
-    - **ENTER** : Save this into a file, board4.txt (manually change the name or the txt on the Board tab, line 242, which says: *PrintWriter file = createWriter("board4.txt");*)
+- Creating level key characters (manually):
+  - **#** : Unbreakable obstacle or wall: The board must be surrounded by a layer of unbreakable obstacles
+  - **-** : Breakable obstacle
+  - **P** : Player: You may only have one player in the field
+  - **E** : Enemy: You may only have one enemy in the field (As of now)
+  - Changing the default game board:
+    - Go to the Main tab in Processing, and refer to Line 12 (the line that says *b = new Board("board4.txt", 20, 10);*) 
+    - Change the *board4.txt* to the name of the new default game file.
+
+- Creating level key characters (using interface):
+  Place your mouse on the tile you want to put your obstacle or player in, and then press one of the corresponding shortcut keys:
+  - **#**, **1** : Unbreakable obstacle or wall
+  - **-**, **2** : Breakable obstacle
+  - **P**, **3** : Player
+  - **E**, **4** : Enemy
+  - **BACKSPACE** : Delete the obstacle or player in this area
+  - **ENTER** : Save this into the default file, board4.txt
+    - To change this default save file, go to the Board tab in Processing, and refer to Line 242, which says: *PrintWriter file = createWriter("board4.txt");*
+    - Change the *board4.txt* to the name of the new default save file.
 
 ## Known Bugs
 - Create Level button does not work unless all instances of the Begin button is completely commented out.
