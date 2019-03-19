@@ -6,7 +6,10 @@ The goal of the game is to be the last player standing. To achieve this goal, ea
 
 ## Features
 - **Main Menu**: You can start your game or exit the game. (Create Level not yet implemented in the Interface)
-- **Create level**: You can manually create your own level by using a .txt file. Go to the Main tab in Processing and on Line 12 (the line that says *b = new Board("board1.txt", 20, 10);*)
+- **Create level**: You can manually create your own level by using a .txt file. Go to the Main tab in Processing and on Line 12 (the line that says *b = new Board("board1.txt", 20, 10);*) 
+```diff 
+- NOTE: Due to an unknown bug, we have temporarily disabled this feature.
+```
   - Creating level key characters (manually):
     - **#** : Unbreakable obstacle or wall: The board must be surrounded by a layer of unbreakable obstacles
     - **-** : Breakable obstacle
