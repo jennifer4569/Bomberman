@@ -48,4 +48,4 @@ The goal of the game is to be the last player standing. To achieve this goal, ea
 - **June 10, 2017**: Added enemy to the board, based on the file
 - **June 11, 2017**: Enemy now has pathfinder and can move/bomb its way to the user, and attack the user
 - **June 11, 2017**: Enemy has animation
-- **JUne 11, 2017**: You can now create levels
+- **June 11, 2017**: You can now create levels
