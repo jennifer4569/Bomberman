@@ -13,7 +13,7 @@ Follow the following steps to ensure that your game is installed properly.
 2. Clone this repository.
    - Open your terminal
      - Windows: Windows Key, search for "Command Prompt"
-     - Linux: Ctrl + Shift + T
+     - Linux: Ctrl + Alt + T
    - Run the following command:
      ``git clone https://github.com/jennifer4569/Bomberman.git``
 3. Open any of the .pde files in your newly cloned Bomberman repository using Processing
