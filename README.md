@@ -5,6 +5,26 @@
 Bomberman is a game where you are given a board (m x n) in which each space is either empty or has an obstacle (breakable/unbreakable). There are at most 4 players on the board, where one is the user, and there can be at most 3 enemies on the board. As of now, only 2 players can be on the board: the user and one enemy.
 The goal of the game is to be the last player standing. To achieve this goal, each player is given a set number of bombs, and each player can use those bombs to destroy breakable obstacles, get close to their enemies, and eliminate them. 
 
+## Setup
+Follow the following steps to ensure that your game is installed properly.
+1. Download Processing. (If you already have Processing, you may skip this step.)
+   - Go to https://processing.org/download/
+   - Follow the instructions on downloading Processing.
+2. Clone this repository.
+   - Open your terminal
+     - Windows: Windows Key, search for "Command Prompt"
+     - Linux: Ctrl + Shift + T
+   - Run the following command:
+     ``git clone https://github.com/jennifer4569/Bomberman.git``
+3. Open any of the .pde files in your newly cloned Bomberman repository using Processing
+   - Click on "Sketch" on the toolbar at the top
+   - Click on "Import Library"
+   - Click on "Add Library..."
+   - Go to the search bar on the top, and search "ControlP5"
+   - Click "Install", located on the bottom right corner.
+4. Now you should be able to run our game! Press *Play*, the triangle-like button below the "Sketch" button, to start our game.
+   - **NOTE**: If the game freezes or crashes due to unknown reasons, and becomes unresponsive, click the "Stop" button right next to the "Play" button.
+
 ## Controls
 - Use the up, down, left, right keys to navigate your player (the white player)
 - Press spacebar to place a bomb
